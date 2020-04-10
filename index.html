@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | [Challenge Name Here]</title>
+  
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    :root {
+      --bg-color: hsl(230, 17%, 14%);
+      --font-color: hsl(0, 0%, 100%);
+      --card-bg-color: hsl(228, 28%, 20%);
+      --card-text-color: hsl(228, 34%, 66%);
+    }
+
+    [data-theme="light"] {
+      --bg-color: hsl(0, 0%, 100%);
+      --font-color: hsl(230, 17%, 14%)  ; 
+      --card-bg-color: hsl(227, 47%, 96%);
+      --card-text-color: hsl(228, 12%, 44%);
+    }
+    body {
+      background-color: var(--bg-color);
+      color:  var(--font-color);
+      font-size: 14px;
+      line-height: 0.6;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+    
+    .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    em{
+      margin-left: 10px;
+    }
+    .theme-switch {
+      display: inline-block;
+      height: 34px;
+      position: relative;
+      width: 60px;
+      background-image: linear-gradient(90deg,hsl(210, 78%, 56%) , hsl(146, 68%, 55%));
+      border-radius: 20px;
+    }
+    .theme-switch input {
+      display: none;
+    }
+    .slider {
+      background-color: #ccc;
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      top: 0;transition: .4s;
+    }
+
+    .slider:before {
+      background-color: white;
+      bottom: 4px;
+      content: "";
+      height: 26px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 26px;
+    } 
+    input:checked + .slider {
+      background-color: #66bb6a;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .slider.round {
+      border-radius: 34px;
+    }
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    .flex-layout {
+      display: flex;
+      justify-content: space-between;
+    }
+    .section-card-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .main-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .main-card-header img {
+      margin-right: 5px;
+    }
+    .wrapper {
+      width: 80%;
+      margin: 3rem auto;
+    }
+    .main-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1em;
+    }
+    .section-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1em;
+    }
+    section header {
+      margin: 2rem 0;
+    }
+    .main-card {
+      padding: 1em;
+      text-align: center;
+      background-color: var(--card-bg-color);
+      color: var(--card-text-color);
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+    .facebook-card {
+      border-top: 3px inset hsl(195, 100%, 50%);
+    }
+    .twitter-card {
+      border-top: 3px inset hsl(203, 89%, 53%);
+    }
+    .instagram-card {
+      border-top: 3px inset;
+      border-image-source: linear-gradient(90deg,hsl(37, 97%, 70%),hsl(329, 70%, 58%));
+      border-image-slice: 1;
+    }
+    .youtube-card {
+      border-top: 3px inset hsl(348, 97%, 39%);
+    }
+    .section-card {
+      padding: 0 1em 1em;
+      background-color: var(--card-bg-color);
+      color: var(--card-text-color);
+    }
+
+    .main-card footer {
+      margin-top: 2rem;
+      color: hsl(163, 72%, 41%);
+    }
+    .main-card h1, .section-card h2 {
+      color: var(--font-color);
+    }
+    .main-card h3 {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 400;
+    }
+    .up-vote {
+      color: hsl(163, 72%, 41%);
+    }
+    .down-vote {
+      color: hsl(356, 69%, 56%);
+    }
+    table thead {
+      padding-bottom: 2rem;
+    }
+    table tr td:nth-child(2), table th:nth-child(2){
+      text-align: right;
+      padding-left: 5rem;
+    }
+    table tr td:nth-child(1), table th:nth-child(1){
+      text-align: left;
+    }
+    .attribution { font-size: 11px; text-align: center; margin-top: 3em;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    @media (max-width: 880px) {
+      body {
+        line-height: 1.5;
+      }
+      .flex-layout  {
+        flex-direction: column;
+      }
+      .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .h1,h2,h3 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+      .main-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1em;
+    }
+    .section-wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1em;
+    }
+    }
+
+    @media (max-width: 375px) {
+      body {
+        line-height: 1.5;
+        font-size: small;
+      }
+      .main-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 1em;
+    }
+    .section-wrapper {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 1em;
+    }
+    }
+  </style>
+
+ 
+</head>
+<body>
+  <div class="wrapper">
+    <header class="flex-layout" >
+      <div>
+        <h1>Social Media Dashboard</h1>
+        <p>Total Followers: 23,004</p>
+      </div>
+      <div>
+        <div class="theme-switch-wrapper">
+          <em>Dark Mode</em>
+          <label for="checkbox" class="theme-switch">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+          </label>
+        </div>
+      </div>
+    </header>
+    <main class="main-container">
+      <div class="main-card facebook-card">
+        <header>
+          <div class="main-card-header"><img src="images/icon-facebook.svg" alt=""> @nathanf</div>
+        </header>
+        <div>
+          <h1> 1987</h1>
+          <h3>Followers</h3>
+        </div>
+        <footer>
+          <p><img src="images/icon-up.svg" alt=""> 12 Today</p>
+        </footer>
+      </div>
+      <div class="main-card twitter-card">
+        <header>
+          <div class="main-card-header"><img src="images/icon-twitter.svg" alt=""> @nathanf</div>
+        </header>
+        <div>
+          <h1> 1044</h1>
+          <h3>Followers</h3>
+        </div>
+        <footer>
+          <p><img src="images/icon-up.svg" alt=""> 99 Today</p>
+        </footer>
+      </div>
+      <div class="main-card instagram-card">
+        <header>
+          <div class="main-card-header"><img src="images/icon-instagram.svg" alt=""> @realnathanf</div>
+        </header>
+        <div>
+          <h1> 11k</h1>
+          <h3>Followers</h3>
+        </div>
+        <footer>
+          <p><img src="images/icon-up.svg" alt=""> 1099 Today</p>
+        </footer>
+      </div>
+      <div class="main-card youtube-card">
+        <header>
+          <div class="main-card-header"><img src="images/icon-youtube.svg" alt=""> Nathan F.</div>
+        </header>
+        <div>
+          <h1> 8239</h1>
+          <h3>Subscribers</h3>
+        </div>
+        <footer>
+          <p class="down-vote"><img src="images/icon-down.svg" alt=""> 144 Today</p>
+        </footer>
+      </div>
+    </main>
+    <section>
+      <header>
+        <h2>Overview - Today</h2>
+      </header>
+       <div class="section-wrapper">
+
+         <div class="section-card ">
+           <header class="section-card-flex">
+               <span> Page Views</span>
+               <img src="images/icon-facebook.svg" alt="">
+           </header>
+          <footer class="section-card-flex">
+              <span><h2>87</h2></span>
+              <p class="up-vote"><img src="images/icon-up.svg" alt="">3%</p>
+          </footer>
+         </div>
+
+        
+         <div class="section-card ">
+          <header class="section-card-flex">
+              <span> Likes</span>
+              <img src="images/icon-facebook.svg" alt="">
+          </header>
+         <footer class="section-card-flex">
+             <span><h2>52</h2></span>
+             <p class="down-vote"><img src="images/icon-down.svg" alt="">2%</p>
+         </footer>
+        </div>
+
+
+         <div class="section-card ">
+          <header class="section-card-flex">
+              <span> Likes</span>
+              <img src="images/icon-instagram.svg" alt="">
+          </header>
+         <footer class="section-card-flex">
+             <span><h2>5462</h2></span>
+             <p class="up-vote"><img src="images/icon-up.svg" alt="">2257%</p>
+         </footer>
+        </div>
+
+         <div class="section-card ">
+          <header class="section-card-flex">
+              <span>Profile Views</span>
+              <img src="images/icon-instagram.svg" alt="">
+          </header>
+         <footer class="section-card-flex">
+             <span><h2>52k</h2></span>
+             <p class="up-vote"><img src="images/icon-up.svg" alt="">1375%</p>
+         </footer>
+        </div>
+
+
+         <div class="section-card ">
+          <header class="section-card-flex">
+              <span> Retweets</span>
+              <img src="images/icon-twitter.svg" alt="">
+          </header>
+         <footer class="section-card-flex">
+             <span><h2>117</h2></span>
+             <p class="up-vote"><img src="images/icon-up.svg" alt="">303%</p>
+         </footer>
+        </div>
+
+         <div class="section-card ">
+          <header class="section-card-flex">
+              <span>Likes</span>
+              <img src="images/icon-twitter.svg" alt="">
+          </header>
+         <footer class="section-card-flex">
+             <span><h2>507</h2></span>
+             <p class="up-vote"><img src="images/icon-up.svg" alt="">553%</p>
+         </footer>
+        </div>
+
+         <div class="section-card ">
+          <header class="section-card-flex">
+              <span>Likes</span>
+              <img src="images/icon-youtube.svg" alt="">
+          </header>
+         <footer class="section-card-flex">
+             <span><h2>107</h2></span>
+             <p class="down-vote"><img src="images/icon-down.svg" alt="">19%</p>
+         </footer>
+        </div>
+
+
+       <div class="section-card ">
+        <header class="section-card-flex">
+            <span> Total Views</span>
+            <img src="images/icon-youtubesvg" alt="">
+        </header>
+       <footer class="section-card-flex">
+           <span><h2>1407</h2></span>
+           <p class="down-vote"><img src="images/icon-down.svg" alt="">12%</p>
+       </footer>
+      </div>
+    </section>
+  </div>
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Abdulsalam</a>.
+  </div>
+
+  <script>
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    // const currentTheme = localStorage.setItem('theme') ? localStorage.getItem('theme') : null;
+    // if (currentTheme) {
+    //   document.documentElement.setAttribute('data-theme', currentTheme);
+    //     if (currentTheme === 'dark') {
+    //       toggleSwitch.checked = 'true';
+    //     }
+    // }
+    function switchTheme(e){
+      if(e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        // localStorage.setItem('theme', 'dark');
+      }
+      else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        // localStorage.setItem('theme', 'light');
+      }
+    }
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  </script>
+</body>
+</html>
